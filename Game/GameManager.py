@@ -20,12 +20,14 @@ class GameManager:
 
             win_state = self.board.evaluate_win_state()
             if win_state != 0:
-                print(self.playerManager.get_player_name(win_state) + " won")
+                #print(self.playerManager.get_player_name(win_state) + " won")
+                print(f"🏆 Congratulations {self.playerManager.get_player_name(win_state)} — you won! 🏆")
                 return
 
             self.playerManager.switch_active_player()
 
-        print("Its a Draw")
+        #print("Its a Draw")
+        print("It's a draw! 🤝")
 
     def make_move(self):
         while True:
@@ -52,7 +54,8 @@ class GameManager:
 
     def ask_for_restart(self):
         while True:
-            input_string = input("Do you want to restart? (y/n)")
+            input_string = input("🔁 Do you want to restart the game? (y/n): ").strip().lower()
+            #input_string = input("Do you want to restart? (y/n)")
 
             if input_string == "y":
                 self.board = Board()
