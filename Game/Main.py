@@ -1,19 +1,19 @@
-import pygame
 import time
 import sys
 
+from SoundManager import SoundManager
 from Utils import Utils
 from GameManager import GameManager
 
 class Main:
     def __init__(self):
+        self.sound_manager = SoundManager()
         Utils.clear_console()
-        pygame.mixer.init()
-        pygame.mixer.Sound("Sounds\Background.wav").play(-1).set_volume(0.3)
 
-    @staticmethod
-    def game_loop():
-        game_manager = GameManager()
+        self.sound_manager.play("Background.wav", 0.3, -1)
+
+    def game_loop(self):
+        game_manager = GameManager(self.sound_manager)
 
         while True:
             game_manager.run_game()

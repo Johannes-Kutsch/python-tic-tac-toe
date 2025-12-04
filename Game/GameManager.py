@@ -10,11 +10,12 @@ from PlayerManager import PlayerManager
 
 
 class GameManager:
-    def __init__(self):
+    def __init__(self, sound_manager):
         player_1_name = input(f"{ColorManager.get_player_color(1)}Player 1{Style.RESET_ALL}, please enter your name: ")
         player_2_name = input(f"{ColorManager.get_player_color(-1)}Player 2{Style.RESET_ALL}, please enter your name: ")
         Utils.clear_console()
 
+        self.sound_manager = sound_manager
         self.playerManager = PlayerManager(player_1_name, player_2_name)
         self.board = Board()
 
@@ -35,7 +36,6 @@ class GameManager:
 
         self.print_draw_message()
 
-
     def print_colored_board(self):
         print(self.board.get_board_string(ColorManager.get_player_color(1),
               ColorManager.get_player_color(-1)))
@@ -46,7 +46,7 @@ class GameManager:
 
             if self.board.try_make_move(int(player_input[0])-1, int(player_input[-1])-1, self.playerManager.get_active_player_id()):
                 Utils.clear_console()
-                pygame.mixer.Sound("Sounds\Move.wav").play()
+                self.sound_manager.play("Move.wav")
                 print(f"\n{self.playerManager.get_active_player_color()}{self.playerManager.get_active_player_name()} is making a move to {player_input[0]}:{player_input[-1]}:...\n")
                 break
             else:
@@ -79,23 +79,21 @@ class GameManager:
             self.print_error_message("Invalid input. Try again.")
 
     def print_win_message(self, win_state):
-        pygame.mixer.Sound("Sounds\Win.ogg").play()
+        self.sound_manager.play("Win.ogg")
         win_message = f"   {self.playerManager.get_player_name(win_state, False)} WINS!   "
         print(ColorManager.get_player_color(win_state) + "╔" + "═" * len(win_message) + "╗")
         print(f"║{win_message}║")
         print("╚" + "═" * len(win_message) + f"╝{Style.RESET_ALL}")
 
-    @staticmethod
-    def print_error_message(message):
-        pygame.mixer.Sound("Sounds\Error.wav").play()
-        print(f"{ColorManager.get_error_color()}" + message + Style.RESET_ALL)
-
-    @staticmethod
-    def print_draw_message():
-        pygame.mixer.Sound("Sounds\Win.ogg").play()
+    def print_draw_message(self):
+        self.sound_manager.play("Win.ogg")
         print(f"{Fore.YELLOW}╔═══════════════════╗")
         print(f"║   IT'S A DRAW!    ║")
         print(f"╚═══════════════════╝{Style.RESET_ALL}")
+
+    def print_error_message(self, message):
+        self.sound_manager.play("Error.wav")
+        print(f"{ColorManager.get_error_color()}" + message + Style.RESET_ALL)
 
     @staticmethod
     def is_input_valid(string_input):
