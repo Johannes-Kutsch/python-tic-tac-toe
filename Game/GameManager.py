@@ -10,7 +10,7 @@ class GameManager:
         self.playerManager = PlayerManager(player_1_name, player_2_name)
         self.board = Board()
 
-    def start_game(self):
+    def run_game(self):
         print(f"\n {self.playerManager.get_active_player_name()} starts the game!")
         print(repr(self.board))
 
@@ -39,11 +39,6 @@ class GameManager:
 
         print(repr(self.board))
         print("Invalid position / this cell is already taken. Try again.")
-
-        # switch player
-        # repeat until win/draw
-
-
 
     def get_valid_input(self):
         input_prompt = self.playerManager.get_active_player_name() + " to make a move, please enter cell and row (e.g. 1 2): "
