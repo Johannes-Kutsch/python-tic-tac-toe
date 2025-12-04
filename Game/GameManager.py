@@ -1,9 +1,11 @@
-﻿import pygame
+﻿import time
+import sys
 
 from colorama import Fore
 from colorama import Style
 
 from ColorManager import ColorManager
+from AIManager import AIManager
 from Utils import Utils
 from Board import Board
 from PlayerManager import PlayerManager
@@ -24,7 +26,10 @@ class GameManager:
         self.print_colored_board()
 
         while self.board.moves_left() > 0:
-            self.make_move()
+            if self.playerManager.is_active_player_ai():
+                self.make_ai_move()
+            else:
+                self.make_move()
             self.print_colored_board()
 
             win_state = self.board.evaluate_win_state()
@@ -51,6 +56,26 @@ class GameManager:
                 break
             else:
                 print(f"{ColorManager.get_error_color()}The cell {player_input[0]}:{player_input[-1]} is already taken. Try again.{Style.RESET_ALL}")
+
+    def make_ai_move(self):
+         sys.stdout.write(f"calculating move for {self.playerManager.get_active_player_name()}.")
+         sys.stdout.flush()
+         time.sleep(0.33)
+         for i in range(3):
+             sys.stdout.write(".")
+             sys.stdout.flush()
+             time.sleep(0.33)
+
+        while True:
+            move = AIManager.get_next_move(self.board.board, self.playerManager.get_active_player_id())
+
+            if self.board.try_make_move(move[0], move[1], self.playerManager.get_active_player_id()):
+                Utils.clear_console()
+                self.sound_manager.play("Move.wav")
+                print(f"\n{self.playerManager.get_active_player_color()}{self.playerManager.get_active_player_name()} is making a move to {move[0]+1}:{move[1]+1}:...\n")
+                break
+            else:
+                print(f"{ColorManager.get_error_color()}The cell {move[0]+1}:{move[1]+1} is already taken. Try again.{Style.RESET_ALL}")
 
     def get_valid_input(self):
         input_prompt = self.playerManager.get_active_player_name() + " to make a move, please enter cell and row (e.g. 1 2): "

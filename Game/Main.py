@@ -50,6 +50,7 @@ class Main:
         self.typewriter("- 2 Players take turns putting their marks (X or O) in empty squares on a 3x3 grid")
         self.typewriter("- The first player to get 3 of their marks in a row (horizontally, vertically or diagonally) is the winner")
         self.typewriter("- When all 9 squares are full, the game ends with a tie")
+        self.typewriter("- Name a player \"AI\" to let a min-max algorithm take over")
         print()
 
 main = Main()
