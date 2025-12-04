@@ -1,4 +1,6 @@
-﻿from colorama import Fore
+﻿import pygame
+
+from colorama import Fore
 from colorama import Style
 
 from ColorManager import ColorManager
@@ -44,6 +46,7 @@ class GameManager:
 
             if self.board.try_make_move(int(player_input[0])-1, int(player_input[-1])-1, self.playerManager.get_active_player_id()):
                 Utils.clear_console()
+                pygame.mixer.Sound("Sounds\Move.wav").play()
                 print(f"\n{self.playerManager.get_active_player_color()}{self.playerManager.get_active_player_name()} is making a move to {player_input[0]}:{player_input[-1]}:...\n")
                 break
             else:
@@ -60,7 +63,7 @@ class GameManager:
             if self.is_input_valid(string_input):
                 return string_input
 
-            print(f"{ColorManager.get_error_color()}Invalid input! Enter two numbers between 1 and 3, e.g. '1 3'.{Style.RESET_ALL}")
+            self.print_error_message("Invalid input! Enter two numbers between 1 and 3, e.g. '1 3'.")
 
     def ask_for_restart(self):
         while True:
@@ -73,16 +76,23 @@ class GameManager:
             elif input_string == "n":
                 return False
 
-            print(f"{ColorManager.get_error_color()}Invalid input. Try again.{Style.RESET_ALL}")
+            self.print_error_message("Invalid input. Try again.")
 
     def print_win_message(self, win_state):
+        pygame.mixer.Sound("Sounds\Win.ogg").play()
         win_message = f"   {self.playerManager.get_player_name(win_state, False)} WINS!   "
         print(ColorManager.get_player_color(win_state) + "╔" + "═" * len(win_message) + "╗")
         print(f"║{win_message}║")
         print("╚" + "═" * len(win_message) + f"╝{Style.RESET_ALL}")
 
     @staticmethod
+    def print_error_message(message):
+        pygame.mixer.Sound("Sounds\Error.wav").play()
+        print(f"{ColorManager.get_error_color()}" + message + Style.RESET_ALL)
+
+    @staticmethod
     def print_draw_message():
+        pygame.mixer.Sound("Sounds\Win.ogg").play()
         print(f"{Fore.YELLOW}╔═══════════════════╗")
         print(f"║   IT'S A DRAW!    ║")
         print(f"╚═══════════════════╝{Style.RESET_ALL}")

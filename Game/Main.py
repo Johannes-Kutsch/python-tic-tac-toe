@@ -8,6 +8,8 @@ from GameManager import GameManager
 class Main:
     def __init__(self):
         Utils.clear_console()
+        pygame.mixer.init()
+        pygame.mixer.Sound("Sounds\Background.wav").play(-1).set_volume(0.3)
 
     @staticmethod
     def game_loop():
@@ -17,12 +19,6 @@ class Main:
             game_manager.run_game()
             if not game_manager.ask_for_restart():
                 break
-#pygame.mixer.init()
-#sound = pygame.mixer.Sound("Error.wav")
-#sound.play()
-
-#sounds for: move, error, win, draw
-#better messages for rules & errors
 
     @staticmethod
     def typewriter(text, color="", delay=0.03):
