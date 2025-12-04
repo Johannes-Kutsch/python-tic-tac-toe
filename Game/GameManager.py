@@ -14,19 +14,26 @@ class GameManager:
         print("")
         print(repr(self.board))
 
+
+        while self.board.moves_left() > 0:
+            self.make_move()
+            print(repr(self.board))
+
+            win_state = self.board.evaluate_win_state()
+            if win_state != 0:
+                print(self.playerManager.get_player_name(win_state) + " won")
+                break
+
+            self.playerManager.switch_active_player()
+
+        print("Its a Draw")
+
+    def make_move(self):
         while True:
             player_input = self.get_valid_input()
             if self.board.try_make_move(int(player_input[0])-1, int(player_input[-1])-1, self.playerManager.get_active_player_id()):
                 # player Feedback invalid position
                 break
-
-        print(repr(self.board))
-        # try player move (if not possible display error + get new input)
-
-        # switch player
-        # repeat until win/draw
-
-
 
     def get_valid_input(self):
         input_prompt = self.playerManager.get_active_player_name() + " to make a move, please enter cell and row (e.g. 1 2: "
