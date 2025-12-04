@@ -1,5 +1,5 @@
-﻿from Game.Board import Board
-from Game.PlayerManager import PlayerManager
+﻿from Board import Board
+from PlayerManager import PlayerManager
 
 
 class GameManager:
@@ -11,7 +11,8 @@ class GameManager:
         self.board = Board()
 
     def start_game(self):
-        # print board state
+        print(repr(self.board))
+
         # get row/column input for active player
         # validate input format (if invalid display error + repeat last step)
         # try player move (if not possible display error + get new input)
@@ -19,8 +20,5 @@ class GameManager:
         # switch player
         # repeat until win/draw
 
-        print(repr(board))
-        board.try_make_move(0, 0, -1)
-        print(repr(board))
-        board.try_make_move(0, 1, 1)
-        print(repr(board))
+    def get_input(self):
+        pass
