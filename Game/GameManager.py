@@ -27,18 +27,15 @@ class GameManager:
 
         print("Its a Draw")
 
-
     def make_move(self):
         while True:
-            print(f"\n{self.playerManager.get_active_player_name()} is making a move...")
             player_input = self.get_valid_input()
-            if self.board.try_make_move(int(player_input[0])-1, int(player_input[-1])-1, self.playerManager.get_active_player_id()):
-                # player Feedback invalid position
-                print("Valid move!")
-                break
 
-        print(repr(self.board))
-        print("Invalid position / this cell is already taken. Try again.")
+            if self.board.try_make_move(int(player_input[0])-1, int(player_input[-1])-1, self.playerManager.get_active_player_id()):
+                print(f"\n{self.playerManager.get_active_player_name()} is making a move...")
+                break
+            else:
+                print("Invalid position / this cell is already taken. Try again.")
 
     def get_valid_input(self):
         input_prompt = self.playerManager.get_active_player_name() + " to make a move, please enter cell and row (e.g. 1 2): "
