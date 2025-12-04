@@ -10,7 +10,7 @@ class GameManager:
         self.playerManager = PlayerManager(player_1_name, player_2_name)
         self.board = Board()
 
-    def start_game(self):
+    def run_game(self):
         print("")
         print(repr(self.board))
 
@@ -22,7 +22,7 @@ class GameManager:
             win_state = self.board.evaluate_win_state()
             if win_state != 0:
                 print(self.playerManager.get_player_name(win_state) + " won")
-                break
+                return
 
             self.playerManager.switch_active_player()
 
@@ -39,7 +39,10 @@ class GameManager:
         input_prompt = self.playerManager.get_active_player_name() + " to make a move, please enter cell and row (e.g. 1 2: "
 
         while True:
-            string_input = input(input_prompt)
+            string_input = (input(input_prompt)
+                            .replace(" ", "")
+                            .replace(":", "")
+                            .replace("-", ""))
             if self.is_input_valid(string_input):
                 return string_input
 
@@ -48,4 +51,4 @@ class GameManager:
     @staticmethod
     def is_input_valid(string_input):
         valid_inputs = ["1", "2", "3"]
-        return len(string_input) > 1 and string_input[0] in valid_inputs and string_input[-1] in valid_inputs
+        return len(string_input) == 2 and string_input[0] in valid_inputs and string_input[-1] in valid_inputs
