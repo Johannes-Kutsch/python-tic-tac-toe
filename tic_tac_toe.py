@@ -22,9 +22,21 @@ def draw_board(board_data):
     print(" " + "-" * 11)  # Top border
 
 
+def get_value(inp_string):
+    if inp_string == 'o':
+        return -1
+    elif inp_string == 'x':
+        return 1
+    elif inp_string == ' ':
+        return 0
+    else:
+        print("f'Invalid user input'")
+
+
+
 
 def is_win(board_data):
-
+    
     rows = range(3)
     cols = range(3)
 
@@ -53,8 +65,14 @@ def is_win(board_data):
             return True
     
     # check diagonals
-    #diag1_sum = board_data[0][0] + board_data[1][1] + board_data[2][2]
-    #diag2_sum = board_data[2][0] + board_data[1][1] + board_data[2][2]
+    diag1_sum = get_value(board_data[0][0]) + get_value(board_data[1][1]) + get_value(board_data[2][2])
+    diag2_sum = get_value(board_data[2][0]) + get_value(board_data[1][1]) + get_value(board_data[0][2])
+
+    print(f'diga1 = {diag1_sum}')
+    print(f'diga2 = {diag2_sum}')
+    if abs(diag1_sum) == 3 or abs(diag2_sum) == 3 :
+        print(f"Full diagonal")
+        return True
             
 
 
@@ -67,9 +85,9 @@ if __name__ == "__main__":
     print("Welcome to a new round of Tic-Tac-Toe!")
 
     board_data = [
-    ['x', ' ', 'x'], 
-    [' ', 'x', 'x'], 
-    ['x', ' ', 'x']]
+    ['x', ' ', 'o'], 
+    [' ', 'o', 'x'], 
+    ['o', ' ', 'x']]
 
     draw_board(board_data)
     print(is_win(board_data))
