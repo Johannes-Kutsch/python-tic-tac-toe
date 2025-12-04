@@ -60,7 +60,8 @@ class GameManager:
 
     def ask_for_restart(self):
         while True:
-            input_string = input("Do you want to restart? (y/n)")
+            input_string = input("🔁 Do you want to restart the game? (y/n): ").strip().lower()
+            #input_string = input("Do you want to restart? (y/n)")
 
             if input_string == "y":
                 self.board = Board()
