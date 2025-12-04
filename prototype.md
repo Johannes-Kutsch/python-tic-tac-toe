@@ -1,10 +1,24 @@
 # TicTacToe Prototype
-### Initial Board (Empty TicTocToe Gird)
 
+This document shows the visual and interaction design of the TicTacToe game before implementation.  
+It includes the game board layout, user interaction examples, and a design diagram exported from Miro.  
+
+
+---
+
+##  Miro Design Diagram
+
+Below is the visual flow/design created in Miro:
+
+![Miro Prototype](images/miro_design.png)
+
+
+
+---
+
+## ### Initial Board (Empty Grid)
 
 ```
-Initial Board (Empty Grid)
-
   ------------
  |   |   |   |
   ------------
@@ -12,36 +26,23 @@ Initial Board (Empty Grid)
   ------------
  |   |   |   |
   ------------
-
-```
-###  Tic-Tac-Toe Grid Layout (How positions map)
-
-```
-Grid Positions (row, column)
-
-  -------------------
- | (0,0) (0,1) (0,2) |
-  -------------------
- | (1,0) (1,1) (1,2) |
-  -------------------
- | (2,0) (2,1) (2,2) |
-  -------------------
-
 ```
 
 
-## User Interaction Example
+---
+
+## ### User Interaction Example
 
 ```
 Player X, enter row and column: 0 2
-
 ```
 
-###  Board After Move
+
+---
+
+## ### Updated Board After Move
 
 ```
-Board after Player X moves to (0,2)
-
   ------------
  |   |   | X |
   ------------
@@ -49,9 +50,16 @@ Board after Player X moves to (0,2)
   ------------
  |   |   |   |
   ------------
-  
 ```
-###  Another Move Example
+
+
+---
+
+## ### Another Move Example
+
+```
+Player O, enter row and column: 1 1
+```
 
 ```
   ------------
@@ -61,18 +69,22 @@ Board after Player X moves to (0,2)
   ------------
  |   |   |   |
   ------------
-
 ```
 
-###  Invalid Move Example
+
+---
+
+## ### Invalid Move Example
 
 ```
 Player X, enter row and column: 0 2
 This position is already taken! Please try again.
-
 ```
 
-###  Winning Scenario Example
+
+---
+
+## ### Winning Scenario Example
 
 ```
   ------------
@@ -84,9 +96,12 @@ This position is already taken! Please try again.
   ------------
 
 Player X wins!
-
 ```
-###  Tie Scenario Example
+
+
+---
+
+## ### Tie Scenario Example
 
 ```
   ------------
@@ -99,3 +114,7 @@ Player X wins!
 
 It's a tie!
 ```
+
+---
+
+# End of Prototype
