@@ -7,8 +7,8 @@ from PlayerManager import PlayerManager
 
 class GameManager:
     def __init__(self):
-        player_1_name = input("Player 1, please enter your name: ")
-        player_2_name = input("Player 2, please enter your name: ")
+        player_1_name = input(PlayerManager.get_player_color(1) + "Player 1, please enter your name: ")
+        player_2_name = input(PlayerManager.get_player_color(-1) + "Player 2, please enter your name: ")
 
         self.playerManager = PlayerManager(player_1_name, player_2_name)
         self.board = Board()

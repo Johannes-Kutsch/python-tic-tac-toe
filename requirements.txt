@@ -1,1 +1,2 @@
-colorama
+pygame==2.6.1
+colorama==0.4.6

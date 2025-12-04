@@ -23,5 +23,6 @@ class PlayerManager:
     def get_player_name(self, player_id) -> str:
         return self.player_1_name if player_id == 1 else self.player_2_name
 
-    def get_player_color(self, player_id) -> str:
+    @staticmethod
+    def get_player_color(player_id) -> str:
         return f"{Fore.RED}" if player_id == 1 else f"{Fore.BLUE}"
