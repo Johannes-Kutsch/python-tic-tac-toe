@@ -1,4 +1,7 @@
-﻿from Board import Board
+﻿from colorama import Fore
+from colorama import Style
+
+from Board import Board
 from PlayerManager import PlayerManager
 
 
@@ -20,12 +23,17 @@ class GameManager:
 
             win_state = self.board.evaluate_win_state()
             if win_state != 0:
-                print(self.playerManager.get_player_name(win_state) + " won")
+                win_message = f"   PLAYER {self.playerManager.get_player_name(win_state)} WINS!   "
+                print(self.playerManager.get_player_color(win_state) + "╔" + "═" * len(win_message) + "╗")
+                print(f"║{win_message}║")
+                print("╚"+ "═" * len(win_message) + f"╝{Style.RESET_ALL}")
                 return
 
             self.playerManager.switch_active_player()
 
-        print("Its a Draw")
+        print(f"{Fore.YELLOW}╔═══════════════════╗")
+        print(f"║   IT'S A DRAW!    ║")
+        print(f"╚═══════════════════╝{Style.RESET_ALL}")
 
     def make_move(self):
         while True:
@@ -59,6 +67,8 @@ class GameManager:
                 return True
             elif input_string == "n":
                 return False
+
+            print("Wrong input. Try again.")
 
     @staticmethod
     def is_input_valid(string_input):

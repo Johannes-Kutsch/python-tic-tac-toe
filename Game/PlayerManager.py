@@ -1,4 +1,7 @@
-﻿class PlayerManager:
+﻿from colorama import Fore
+
+
+class PlayerManager:
     def __init__(self, player_1_name, player_2_name):
         self.active_player_id = 1
         self.player_1_name = player_1_name
@@ -19,3 +22,6 @@
 
     def get_player_name(self, player_id) -> str:
         return self.player_1_name if player_id == 1 else self.player_2_name
+
+    def get_player_color(self, player_id) -> str:
+        return f"{Fore.RED}" if player_id == 1 else f"{Fore.BLUE}"
