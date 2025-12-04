@@ -2,4 +2,8 @@ from GameManager import GameManager
 
 
 gameManager = GameManager()
-gameManager.start_game()
+
+while True:
+    gameManager.run_game()
+    if not gameManager.ask_for_restart():
+        break
