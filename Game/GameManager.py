@@ -11,7 +11,7 @@ class GameManager:
         self.board = Board()
 
     def run_game(self):
-        print(f"\n {self.playerManager.get_active_player_name()} starts the game!")
+        print(f"\n{self.playerManager.get_active_player_name()} starts the game!\n")
         print(repr(self.board))
 
         while self.board.moves_left() > 0:
