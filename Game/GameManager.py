@@ -14,7 +14,6 @@ class GameManager:
         print("")
         print(repr(self.board))
 
-
         while self.board.moves_left() > 0:
             self.make_move()
             print(repr(self.board))
@@ -27,6 +26,7 @@ class GameManager:
             self.playerManager.switch_active_player()
 
         print("Its a Draw")
+
 
     def make_move(self):
         while True:
@@ -47,6 +47,16 @@ class GameManager:
                 return string_input
 
             # player Feedback invalid input
+
+    def ask_for_restart(self):
+        while True:
+            input_string = input("Do you want to restart? (y/n)")
+
+            if input_string == "y":
+                self.board = Board()
+                return True
+            elif input_string == "n":
+                return False
 
     @staticmethod
     def is_input_valid(string_input):
