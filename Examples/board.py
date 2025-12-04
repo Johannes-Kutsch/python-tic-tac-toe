@@ -16,28 +16,31 @@
         return s
 
     def evaluate_win_state(self) -> int:
+        for scoring_line in self.get_scoring_lines():
+            score = sum(scoring_line)
+            if score == 3:
+                return 1
+            if score == -3:
+                return -1
 
-    # def evaluate_win_state(self) -> int:
-    #     for scoring_line in self.get_scoring_lines():
-    #         score = sum(scoring_line)
-    #         if score == 3:
-    #             return 1
-    #         if score == -3:
-    #             return -1
-    #
-    #     return 0
-    #
-    # def get_scoring_lines(self):
-    #     board = self.board
-    #
-    #     for row in board:
-    #         yield row
-    #
-    #     for c in range(3):
-    #         yield [board[r][c] for r in range(3)]
-    #
-    #     yield [board[i][i] for i in range(3)]
-    #     yield [board[i][2 - i] for i in range(3)]
+        return 0
+
+    def get_scoring_lines(self):
+        scoring_lines = []
+
+        # Rows
+        for row in self.board:
+            scoring_lines.append(row)
+
+        # Columns
+        for c in range(3):
+            scoring_lines.append([self.board[r][c] for r in range(3)])
+
+        # Diagonals
+        scoring_lines.append([self.board[i][i] for i in range(3)])
+        scoring_lines.append([self.board[i][2 - i] for i in range(3)])
+
+        return scoring_lines
 
     def is_draw(self) -> bool:
         return self.moves_left() == 0 and self.evaluate_win_state() == 0
