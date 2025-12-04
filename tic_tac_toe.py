@@ -64,8 +64,8 @@ def is_win(board_data):
     diag1_sum = get_value(board_data[0][0]) + get_value(board_data[1][1]) + get_value(board_data[2][2])
     diag2_sum = get_value(board_data[2][0]) + get_value(board_data[1][1]) + get_value(board_data[0][2])
 
-    print(f'diga1 = {diag1_sum}')
-    print(f'diga2 = {diag2_sum}')
+    print(f'diagonal 1 = {diag1_sum}')
+    print(f'diagonal 2 = {diag2_sum}')
     if abs(diag1_sum) == 3 or abs(diag2_sum) == 3 :
         print(f"Full diagonal")
         return True
@@ -81,8 +81,8 @@ if __name__ == "__main__":
     print("Welcome to a new round of Tic-Tac-Toe!")
 
     board_data = [
-    ['o', 'o', 'o'], 
-    ['o', 'o', 'o'], 
+    ['o', ' ', 'o'], 
+    [' ', ' ', 'o'], 
     ['o', ' ', 'x']]
 
     draw_board(board_data)
