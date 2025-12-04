@@ -5,7 +5,7 @@ import pygame
 class SoundManager:
     def __init__(self):
         pygame.mixer.init()
-        self.base_dir = os.path.dirname(os.path.abspath(__file__)) + "\Sounds"
+        self.base_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "Sounds")
         print(self.base_dir)
 
     def play(self, name, volume=1.0, loops=0):
