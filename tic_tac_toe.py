@@ -7,8 +7,6 @@
 def blabla():
     pass
 
-
-# Function for... (choosing a player?)
 def draw_board(board_data):
     """
     Draws a 3x3 Tic-Tac-Toe board
@@ -19,7 +17,7 @@ def draw_board(board_data):
     for row in board_data:
         print(" " + "-" * 11)  # Top border
         print(f'| {row[0]} | {row[1]} | {row[2]} |')  
-    print(" " + "-" * 11)  # Top border
+    print(" " + "-" * 11)
 
 
 def get_value(inp_string):
@@ -36,7 +34,7 @@ def get_value(inp_string):
 
 
 def is_win(board_data):
-    
+
     rows = range(3)
     cols = range(3)
 
@@ -44,11 +42,10 @@ def is_win(board_data):
     for row in rows:
         rowscore = 0
         for col in cols:
-            if board_data[row][col] == 'x':
-                rowscore +=1
-            elif board_data[row][col]== 'o':
-                rowscore -=1
-        if rowscore == abs(3):
+            rowscore += get_value(board_data[row][col])
+        
+        #Check for 3 in row
+        if abs(rowscore) == 3:
             print(f"Full row {row}")
             return True
         
@@ -56,11 +53,10 @@ def is_win(board_data):
     for col in cols:
         colscore = 0
         for row in rows:
-            if board_data[row][col] == 'x':
-                colscore +=1
-            elif board_data[row][col]== 'o':
-                colscore -=1
-        if colscore == abs(3):
+            colscore += get_value(board_data[row][col])
+        
+        #Check for 3 in col
+        if abs(colscore) == 3:
             print(f"Full column {col}")
             return True
     
@@ -85,8 +81,8 @@ if __name__ == "__main__":
     print("Welcome to a new round of Tic-Tac-Toe!")
 
     board_data = [
-    ['x', ' ', 'o'], 
-    [' ', 'o', 'x'], 
+    ['o', 'o', 'o'], 
+    ['o', 'o', 'o'], 
     ['o', ' ', 'x']]
 
     draw_board(board_data)
