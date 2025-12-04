@@ -10,7 +10,6 @@ from PlayerManager import PlayerManager
 class GameManager:
     def __init__(self):
         player_1_name = input(f"{ColorManager.get_player_color(1)}Player 1{Style.RESET_ALL}, please enter your name: ")
-        Utils.clear_console()
         player_2_name = input(f"{ColorManager.get_player_color(-1)}Player 2{Style.RESET_ALL}, please enter your name: ")
         Utils.clear_console()
 
@@ -45,10 +44,10 @@ class GameManager:
 
             if self.board.try_make_move(int(player_input[0])-1, int(player_input[-1])-1, self.playerManager.get_active_player_id()):
                 Utils.clear_console()
-                print(f"\n{self.playerManager.get_active_player_color()}{self.playerManager.get_active_player_name()} is making a move...\n")
+                print(f"\n{self.playerManager.get_active_player_color()}{self.playerManager.get_active_player_name()} is making a move to {player_input[0]}:{player_input[-1]}:...\n")
                 break
             else:
-                print(f"{ColorManager.get_error_color()}Invalid position / this cell is already taken. Try again.{Style.RESET_ALL}")
+                print(f"{ColorManager.get_error_color()}The cell {player_input[0]}:{player_input[-1]} is already taken. Try again.{Style.RESET_ALL}")
 
     def get_valid_input(self):
         input_prompt = self.playerManager.get_active_player_name() + " to make a move, please enter cell and row (e.g. 1 2): "
