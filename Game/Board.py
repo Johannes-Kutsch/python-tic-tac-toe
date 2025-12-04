@@ -1,17 +1,19 @@
-﻿class Board:
+﻿from colorama import Style
+
+class Board:
     def __init__(self):
         self.board = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
 
-    def __repr__(self):
-        s = ""
+    def get_board_string(self, player_1_color, player_2_color):
+        s = f"{Style.RESET_ALL}"
         for i, row in enumerate(self.board):
             s += f" {row[0]} | {row[1]} | {row[2]} \n"
             if i < 2:
                 s += "---+---+---\n"
 
         s = s.replace("0", " ")
-        s = s.replace("-1", "X")
-        s = s.replace("1", "O")
+        s = s.replace("-1", f"{player_2_color}" + "X" + f"{Style.RESET_ALL}")
+        s = s.replace("1", f"{player_1_color}" + "O" + f"{Style.RESET_ALL}")
 
         return s
 

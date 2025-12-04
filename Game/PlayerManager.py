@@ -1,4 +1,6 @@
-﻿from colorama import Fore
+﻿from colorama import Style
+
+from ColorManager import ColorManager
 
 
 class PlayerManager:
@@ -20,9 +22,8 @@ class PlayerManager:
     def get_active_player_name(self):
         return self.get_player_name(self.active_player_id)
 
-    def get_player_name(self, player_id) -> str:
-        return self.player_1_name if player_id == 1 else self.player_2_name
+    def get_active_player_color(self):
+        return ColorManager.get_player_color(self.active_player_id)
 
-    @staticmethod
-    def get_player_color(player_id) -> str:
-        return f"{Fore.RED}" if player_id == 1 else f"{Fore.BLUE}"
+    def get_player_name(self, player_id, color = True) -> str:
+        return (ColorManager.get_player_color(player_id) if color else "") + (self.player_1_name if player_id == 1 else self.player_2_name) + (Style.RESET_ALL if color else "")
