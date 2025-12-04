@@ -69,6 +69,7 @@ class GameManager:
 
             if input_string == "y":
                 self.board = Board()
+                Utils.clear_console()
                 return True
             elif input_string == "n":
                 return False
@@ -77,7 +78,7 @@ class GameManager:
 
     def print_win_message(self, win_state):
         win_message = f"   {self.playerManager.get_player_name(win_state, False)} WINS!   "
-        print(self.playerManager.get_player_color(win_state) + "╔" + "═" * len(win_message) + "╗")
+        print(ColorManager.get_player_color(win_state) + "╔" + "═" * len(win_message) + "╗")
         print(f"║{win_message}║")
         print("╚" + "═" * len(win_message) + f"╝{Style.RESET_ALL}")
 
