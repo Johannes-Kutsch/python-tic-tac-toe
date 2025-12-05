@@ -2,11 +2,11 @@
 
 class Board:
     def __init__(self):
-        self.board = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+        self.board_state = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
 
     def get_board_string(self, player_1_color, player_2_color):
         s = f"{Style.RESET_ALL}"
-        for i, row in enumerate(self.board):
+        for i, row in enumerate(self.board_state):
             s += f" {row[0]} | {row[1]} | {row[2]} \n"
             if i < 2:
                 s += "---+---+---\n"
@@ -31,16 +31,16 @@ class Board:
         scoring_lines = []
 
         # Rows
-        for row in self.board:
+        for row in self.board_state:
             scoring_lines.append(row)
 
         # Columns
         for c in range(3):
-            scoring_lines.append([self.board[r][c] for r in range(3)])
+            scoring_lines.append([self.board_state[r][c] for r in range(3)])
 
         # Diagonals
-        scoring_lines.append([self.board[i][i] for i in range(3)])
-        scoring_lines.append([self.board[i][2 - i] for i in range(3)])
+        scoring_lines.append([self.board_state[i][i] for i in range(3)])
+        scoring_lines.append([self.board_state[i][2 - i] for i in range(3)])
 
         return scoring_lines
 
@@ -48,11 +48,11 @@ class Board:
         return self.moves_left() == 0 and self.evaluate_win_state() == 0
 
     def moves_left(self) -> int:
-        return sum(cell == 0 for row in self.board for cell in row)
+        return sum(cell == 0 for row in self.board_state for cell in row)
 
     def try_make_move(self, row, col, player) -> bool:
-        if self.board[row][col] == 0:
-            self.board[row][col] = player
+        if self.board_state[row][col] == 0:
+            self.board_state[row][col] = player
             return True
 
         return False

@@ -58,16 +58,16 @@ class GameManager:
                 print(f"{ColorManager.get_error_color()}The cell {player_input[0]}:{player_input[-1]} is already taken. Try again.{Style.RESET_ALL}")
 
     def make_ai_move(self):
-         sys.stdout.write(f"calculating move for {self.playerManager.get_active_player_name()}.")
-         sys.stdout.flush()
-         time.sleep(0.33)
-         for i in range(3):
-             sys.stdout.write(".")
-             sys.stdout.flush()
-             time.sleep(0.33)
+        sys.stdout.write(f"calculating move for {self.playerManager.get_active_player_name()}.")
+        sys.stdout.flush()
+        time.sleep(0.33)
+        for i in range(3):
+            sys.stdout.write(".")
+            sys.stdout.flush()
+            time.sleep(0.33)
 
         while True:
-            move = AIManager.get_next_move(self.board.board, self.playerManager.get_active_player_id())
+            move = AIManager.get_next_move(self.board.board_state, self.playerManager.get_active_player_id())
 
             if self.board.try_make_move(move[0], move[1], self.playerManager.get_active_player_id()):
                 Utils.clear_console()
