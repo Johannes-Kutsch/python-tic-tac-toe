@@ -1,3 +1,7 @@
+### ToDo: Player Class
+### ToDo: clean up code copy
+### ToDo: cleaner code separtion between Game Manager and Main
+
 import os
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "1"
 
