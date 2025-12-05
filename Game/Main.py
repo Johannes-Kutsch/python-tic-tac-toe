@@ -35,7 +35,8 @@ class Main:
     def welcome_message(self):
         orange = "\033[38;5;208m"
         blue = "\033[38;5;75m"
-        red = "\033[38;5;196m"
+        red = "\033[38;5;203m"
+        reset = "\033[0m"
 
         print("")
         self.typewriter("  ████████╗██╗ ██████╗     ████████╗ █████╗  ██████╗     ████████╗ ██████╗ ███████╗", orange, delay=0.005)
@@ -44,8 +45,8 @@ class Main:
         self.typewriter("     ██║   ██║██║             ██║   ██╔══██║██║             ██║   ██║   ██║██╔══╝", orange, delay=0.005)
         self.typewriter("     ██║   ██║╚██████╗        ██║   ██║  ██║╚██████╗        ██║   ╚██████╔╝███████╗", orange, delay=0.005)
         self.typewriter("     ╚═╝   ╚═╝ ╚═════╝        ╚═╝   ╚═╝  ╚═╝ ╚═════╝        ╚═╝    ╚═════╝ ╚══════╝", orange, delay=0.005)
-        print("\n\n")
-        time.sleep(1)
+        print("\n")
+        time.sleep(.6)
         self.typewriter("  by", blue)
         self.typewriter("  Nazila", blue, delay=0.04)
         self.typewriter("  Nate", blue, delay=0.04)
@@ -54,17 +55,17 @@ class Main:
         self.typewriter("  and the other Johannes", blue, delay=0.04)
 
         print()
-        time.sleep(1)
+        time.sleep(.6)
 
-        self.typewriter("  Rules:")
+        self.typewriter("  Rules:", red)
         time.sleep(0.2)
-        self.typewriter("  - 2 Players take turns putting their marks (X or O) in empty squares on a 3x3 grid", delay=0.02)
+        self.typewriter(f"  - 2 Players take turns putting their marks ({orange}X{reset} or {blue}O{reset}) in empty squares on a 3x3 grid", delay=0.02)
         time.sleep(0.2)
-        self.typewriter("  - The first player to get 3 of their marks in a row (horizontally, vertically or diagonally) is the winner", delay=0.02)
+        self.typewriter(f"  - The first player to get 3 of their marks in a row (horizontally, vertically or diagonally) is the winner", delay=0.02)
         time.sleep(0.2)
-        self.typewriter("  - When all 9 squares are full, the game ends with a tie", delay=0.02)
+        self.typewriter(f"  - When all 9 squares are full, the game ends with a tie", delay=0.02)
         time.sleep(0.2)
-        self.typewriter("  - Name a player \"AI\" to let a min-max algorithm take over", delay=0.02)
+        self.typewriter(f"  - Name a player {red}\"AI\"{reset} to let a min-max algorithm take over", delay=0.02)
         time.sleep(0.2)
         print()
 
